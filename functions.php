@@ -157,7 +157,7 @@
 			wp_localize_script( 'pluginchiefremarketerscript', 'pluginchief_google_remarketer_variables', $pluginchiefRemarketerScript );
 			//Queue the supplemental google scripts
 			wp_enqueue_script('googleremarketerscript'
-												,'//www.googleadservices.com/pagead/conversion.js'
+												,'www.googleadservices.com/pagead/conversion.js'
 												,array('jquery')
 												,false
 												,true);
