@@ -155,12 +155,21 @@
 			$pluginchiefRemarketerScript = array( 'pluginchief_google_conversion_id' => $conversionid, 'pluginchief_google_conversion_label' => $conversionlabel );
 			//Localize the script
 			wp_localize_script( 'pluginchiefremarketerscript', 'pluginchief_google_remarketer_variables', $pluginchiefRemarketerScript );
-			//Queue the supplemental google scripts
-			wp_enqueue_script('googleremarketerscript'
-												,'www.googleadservices.com/pagead/conversion.js'
-												,array('jquery')
-												,false
-												,true);
+
+			//US this instead of //www because sometimes WP screws up and looks locally
+			if( isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on' ) {
+						wp_enqueue_script('googleremarketerscript'
+															,'https://www.googleadservices.com/pagead/conversion.js'
+															,array('jquery')
+															,false
+															,true);
+			} else {
+						wp_enqueue_script('googleremarketerscript'
+															,'http://www.googleadservices.com/pagead/conversion.js'
+															,array('jquery')
+															,false
+															,true);
+			}
 
 			echo '<noscript><div style="display:inline;"><img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/'.$conversionid.'/?value=0&label='.$conversionlabel.'&guid=ON&script=0"/></div></noscript>';
 	}
